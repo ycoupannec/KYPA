@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<form method="post" action="../envoiMail.php" onsubmit="return verifier(this)">
+	<form method="post" action="../envoiMail.php" onsubmit="return verifier(this)" enctype="multipart/form-data">
 		emailSender:<br>
 		<input type="text" name="mailSender" id="mailSender" placeholder="email de celui qu'envoit" onblur="verifierEmail(this)"><br>
 		emailReceiver:<br>

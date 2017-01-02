@@ -67,14 +67,11 @@ function affichContDossier($idDossier){
 			{
 				$allFichier[$i]=$fichier;
 				$i++;
-			}
-
-			
+			}			
 		}
 		if ($i>0){
 			return $allFichier;	
 		}
-		
 	}
 	return false;
 	
@@ -92,7 +89,7 @@ function creeDossier(){
 	if (!mkdir($structure, 0777)) {
 	    die('Echec lors de la création du répertoire...');
 	}
-	return $idDossier;
+	return $structure;
 }
 
 function verifChamps(){
