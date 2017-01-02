@@ -9,9 +9,9 @@
 <body>
 	<form method="post" action="../envoiMail.php" onsubmit="return verifier(this)">
 		emailSender:<br>
-		<input type="text" name="mailSender" placeholder="email de celui qu'envoit" onblur="verifierEmail(this)"><br>
+		<input type="text" name="mailSender" id="mailSender" placeholder="email de celui qu'envoit" onblur="verifierEmail(this)"><br>
 		emailReceiver:<br>
-		<input type="text" name="mailReceiver" placeholder="email de celui qui reçoit" onblur="verifierEmail(this)"><br><br>
+		<input type="text" name="mailReceiver" id="mailReceiver" placeholder="email de celui qui reçoit" onblur="verifierEmail(this)"><br><br>
 		File :<br>
 		<input type="file" name="file"><br><br>
 		<input type="submit" value="Submit">

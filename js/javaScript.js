@@ -26,7 +26,9 @@ function verifierEmail(champ)
 
 function verifier(f){
 
-	var verifEmail = verifierEmail(f.email);
+	alert(f);
+
+	var verifEmail = verifierEmail(f.mailSender);
 
 	if (verifEmail) {
 		return true;
