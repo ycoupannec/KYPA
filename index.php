@@ -29,4 +29,5 @@
   }
   else{
     echo $m->render('Page1');
+    /*print_r(affichContDossier('586a7186b2773'));*/
   }

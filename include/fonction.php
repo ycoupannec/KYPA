@@ -55,17 +55,29 @@ function insertImg($img,$textTop,$textBot,$clrTop=null,$clrBot=null,$sizeTop=nul
 }
 
 
-function affichContDossier(){
-	while(false !== ($fichier = readdir($dossier)))
+function affichContDossier($idDossier){
+	$i=0;
+	$cheminDossier='public/'.$idDossier;
+	if($dossier = opendir($cheminDossier))
 	{
-
-		if($fichier != '.' && $fichier != '..' && $fichier != 'index.php')
+		while(false !== ($fichier = readdir($dossier)))
 		{
+
+			if($fichier != '.' && $fichier != '..' && $fichier != 'index.php')
+			{
+				$allFichier[$i]=$fichier;
+				$i++;
+			}
+
 			
 		}
-
-
+		if ($i>0){
+			return $allFichier;	
+		}
+		
 	}
+	return false;
+	
 }
 
 function creeDossier(){
