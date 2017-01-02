@@ -89,10 +89,12 @@ function creeDossier(){
 	if (!mkdir($structure, 0777)) {
 	    die('Echec lors de la création du répertoire...');
 	}
-	return $structure;
+	return $idDossier;
 }
 
 function verifChamps(){
+
+
 
 
 }
