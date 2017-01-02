@@ -53,3 +53,44 @@ function insertImg($img,$textTop,$textBot,$clrTop=null,$clrBot=null,$sizeTop=nul
 
 	return $idGen;
 }
+
+
+function affichContDossier(){
+	while(false !== ($fichier = readdir($dossier)))
+	{
+
+		if($fichier != '.' && $fichier != '..' && $fichier != 'index.php')
+		{
+			
+		}
+
+
+	}
+}
+
+function creeDossier(){
+	$idDossier=uniqid();
+		// Structure de répertoire désirée
+	$structure = './'.$idDossier;
+
+	// Pour créer une stucture imbriquée, le paramètre $recursive 
+	// doit être spécifié.
+
+	if (!mkdir($structure, 0777)) {
+	    die('Echec lors de la création du répertoire...');
+	}
+	return $idDossier;
+}
+
+function verifChamps(){
+
+
+}
+
+function envoieMail(){
+
+}
+
+function inserChamps(){
+
+}
