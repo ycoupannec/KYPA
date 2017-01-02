@@ -2,16 +2,19 @@
 <html>
 <head>
 	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../js/javaScript.js"></script>
 </head>
+
 <body>
-	<form action="envoiMail.php">
-	  First name:<br>
-	  <input type="text" name="firstname" value="Mickey"><br>
-	  Last name:<br>
-	  <input type="text" name="lastname" value="Mouse"><br><br>
-	  File :<br>
-	  <input type="file" name="file"><br><br>
-	  <input type="submit" value="Submit">
+	<form method="post" action="../envoiMail.php" onsubmit="return verifier(this)">
+		emailSender:<br>
+		<input type="text" name="mailSender" placeholder="email de celui qu'envoit" onblur="verifierEmail(this)"><br>
+		emailReceiver:<br>
+		<input type="text" name="mailReceiver" placeholder="email de celui qui reçoit" onblur="verifierEmail(this)"><br><br>
+		File :<br>
+		<input type="file" name="file"><br><br>
+		<input type="submit" value="Submit">
 	</form>
 
 </body>
