@@ -71,7 +71,8 @@ function affichContDossier(){
 function creeDossier(){
 	$idDossier=uniqid();
 		// Structure de répertoire désirée
-	$structure = '../public/'.$idDossier;
+	$structure = './public/'.$idDossier;
+
 
 	// Pour créer une stucture imbriquée, le paramètre $recursive 
 	// doit être spécifié.
@@ -94,7 +95,7 @@ function envoieMail(){
 function inserChamps($idDossier,$mailEmetteur,$mailRecepteur){
 	if ($idDossier!=""){
 		$sql= new SQLpdo();
-		$idGen=$sql->insert("INSERT INTO `yohannc`.`kypaLink` (`idDossier`, `mailEmetteur`, `mailRecepteur`) VALUES (':idDossier', ':mailEmetteur', ':mailRecepteur');",
+		$idGen=$sql->insert("INSERT INTO `kypaLink` (`idDossier`, `mailEmetteur`, `mailRecepteur`) VALUES (':idDossier', ':mailEmetteur', ':mailRecepteur');",
 		array(":idDossier" => $idDossier,':mailEmetteur'=> $mailEmetteur, ':mailRecepteur'=> $mailRecepteur));
 	}
 }

@@ -29,5 +29,5 @@
   }
   else{
     echo $m->render('Page1');
-    /*echo creeDossier();*/
+    echo creeDossier();
   }
