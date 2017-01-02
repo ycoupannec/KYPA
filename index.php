@@ -28,5 +28,6 @@
     echo $m->render('testPage3');
   }
   else{
-    echo $m->render('testPage1');
+    echo $m->render('Page1');
+    /*echo creeDossier();*/
   }
