@@ -40,21 +40,6 @@ class SQLpdo {
 	}
 }
 
-/*------------------------------------------------------------------------*/
-/*Exemple utilisation class SQLpdo*/
-/*------------------------------------------------------------------------*/
-
-function insertImg($img,$textTop,$textBot,$clrTop=null,$clrBot=null,$sizeTop=null,$sizeBot=null,$id, $type){
-	
-	$sql= new SQLpdo();
-	$idGen=$sql->insert("INSERT INTO `memeGenerate` ( url, textTop, textBot, clrTop, clrBot, sizeTop, sizeBot, ID_memeImage, ID_type) VALUES ( :url, :textTop, :textBot, :clrTop, :clrBot, :sizeTop, :sizeBot, :ID_memeImage, :type)",
-		array(":url" => $img,':textTop'=> $textTop, ':textBot'=> $textBot, ':clrTop'=> $clrTop, ':clrBot'=> $clrBot, ':sizeTop'=> $sizeTop, ':sizeBot'=> $sizeBot, ':ID_memeImage'=> $id, ':type' => $type ));
-
-	
-
-	return $idGen;
-}
-
 
 function affichContDossier($idDossier){
 	$i=0;
@@ -66,7 +51,8 @@ function affichContDossier($idDossier){
 
 			if($fichier != '.' && $fichier != '..' && $fichier != 'index.php')
 			{
-				$allFichier[$i]=$fichier;
+				$stat=stat( realpath ($cheminDossier.'/'.$fichier));
+				$allFichier[]= array('NOM'=>$fichier, 'TAILLE'=> $stat["size"].' octets', 'DATE'=> date ("F d Y H:i:s.", $stat["mtime"]), 'CHEMIN'=>URL_SITE.$cheminDossier.'/'.$fichier);
 				$i++;
 			}			
 		}
@@ -75,6 +61,7 @@ function affichContDossier($idDossier){
 		}
 	}
 	return false;
+	
 }
 
 function creeDossier(){
@@ -85,10 +72,11 @@ function creeDossier(){
 
 	// Pour créer une stucture imbriquée, le paramètre $recursive 
 	// doit être spécifié.
-
+	$old_umask = umask(0);
 	if (!mkdir($structure, 0777)) {
 		die('Echec lors de la création du répertoire...');
 	}
+	umask($old_umask);
 	return $idDossier;
 }
 
@@ -130,4 +118,12 @@ function inserChamps($idDossier,$mailEmetteur,$mailRecepteur){
 		$idGen=$sql->insert("INSERT INTO `kypaLink` (idDossier, mailEmetteur, mailRecepteur) VALUES (:idDossier, :mailEmetteur, :mailRecepteur);",
 			array(":idDossier" => $idDossier,':mailEmetteur'=> $mailEmetteur, ':mailRecepteur'=> $mailRecepteur));
 	}
+}
+function verif_alphaNum($str){
+    preg_match("/([^A-Za-z0-9])/",$str,$result);
+//On cherche tt les caractères autre que [A-Za-z] ou [0-9]
+    if(!empty($result)){//si on trouve des caractère autre que A-Za-z ou 0-9
+        return false;
+    }
+    return true;
 }
