@@ -19,16 +19,16 @@
       'loader' => new Mustache_Loader_FilesystemLoader('template', $options),
   ));
 
-  if (isset($_GET['action']) && $_GET['action'] =="envoiMail" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])==13){
+  if (isset($_GET['action']) && $_GET['action'] =="envoiMail" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])!=13){
     $tabM=array('LINK'=>URL_SITE.'index.php?action=telechargement&id='.$_GET['id']);
     echo $m->render('pageReussite',$tabM);
 
 
   }
-  elseif (isset($_GET['action']) && $_GET['action'] =="telechargement" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])==13){
+  elseif (isset($_GET['action']) && $_GET['action'] =="telechargement" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])!=13){
+    $idDecrypte=decrypte($_GET['id']);
 
-    echo $m->render('page_download',array('FICHIER'=>affichContDossier($_GET['id'])));
-    print_r(affichContDossier($_GET['id']));
+    echo $m->render('page_download',array('FICHIER'=>affichContDossier($idDecrypte)));
   }
   else{
     echo $m->render('Page1');
