@@ -36,7 +36,7 @@ else {
     echo 'Start again!';  
 }
 
-header('location:../index.php?action=envoiMail&id='.$idDossier);
+header('location:../KYPA/index.php?action=envoiMail&id='.$idDossier);
 
 
 
