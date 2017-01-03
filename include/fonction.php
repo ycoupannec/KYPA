@@ -105,7 +105,7 @@ function envoieMail($sender, $receiver, $idDossier){
 	error_reporting (E_ALL);      
 
     //Envoi de l'e-mail
-	$dir = URL_SITE.'index.php?action=envoiMail&id='.$idDossier;
+	$dir = URL_SITE.'index.php?action=telechargement&id='.$idDossier;
 
 	$message = "The file(s) has(ve) been updated, follow this link to download: \n\n $dir";
 
