@@ -10,7 +10,16 @@ require_once "include/fonction.php";
 /*------------------------------------------------------------------------*/
 $sender=$_REQUEST['mailSender'];
 $receiver=$_REQUEST['mailReceiver'];
+$messageUser=$_REQUEST['message'];
+$dateUpload=date('Y-m-d h:i:s');
+$nbDay=$_REQUEST['nbDay'];
+
 $fileUpload=basename($_FILES['file']['name']);
+
+//get all uploaded files
+/*foreach (basename($_FILES['files']['name']) as $fileUpload => $name) {
+
+}*/
 
 if (verifChamps($sender, $receiver, $fileUpload)) {
      
@@ -19,9 +28,10 @@ if (verifChamps($sender, $receiver, $fileUpload)) {
           $idDossier=creeDossier();
           $dossierPublic = 'public/'.$idDossier;
           $fichier = basename($_FILES['file']['name']);
+          verifFile($_FILES['file']['tmp_name']);
      if(move_uploaded_file($_FILES['file']['tmp_name'], $dossierPublic.'/'.$fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
-          inserChamps($idDossier,$sender,$receiver);
+          inserChamps($idDossier,$sender,$receiver,$messageUser,$dateUpload,$nbDay);
           echo 'Upload effectué avec succès !';
           envoieMail($sender, $receiver,$idDossier);
      }
@@ -33,10 +43,16 @@ if (verifChamps($sender, $receiver, $fileUpload)) {
 
 }
 else {
-    echo 'Start again!';  
+    echo 'Upload failed - Start again!';  
 }
 
+
+
 header('location:../KYPA/index.php?action=envoiMail&id='.crypteUrl($idDossier));
+
+
+
+
 
 
 

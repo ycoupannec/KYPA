@@ -219,8 +219,11 @@
     <form method="post" action="./envoiMail.php" onsubmit="return verifier(this)" enctype="multipart/form-data">
       <div class="col-md-6">
         <h2><i class="fa fa-plus-circle" aria-hidden="true"></i> Add files</h2>
-        <input type="file" name="file">
-
+        <input type="file" id = "file" name="file"><br>
+        <label for="">Your message:</label>
+        <input type="text" id = "message" name="message"><br><br>
+        <label for="">Period for the file:</label>
+        <input type="number" step="1" value="15" name="nbDay">
       </div>
 
       <div class="form-group col-md-6">
@@ -230,7 +233,7 @@
         <input type="email" class="form-control"  name="mailReceiver" id="mailReceiver" placeholder="Your Email" onblur="verifierEmail(this)">
       </div>
 
-      <button class="center-block btn btn-primary submitbtn" type="submit">Submit</button>
+      <button class="center-block btn btn-primary submitbtn" type="submit">Upload!</button>
 
     </form>
   </main>

@@ -21,6 +21,7 @@ class SQLpdo {
 
 	}
 
+
 	function fetchAll($sql,$execute=null){
 		$sth = $this->db->prepare($sql);//prepare SQL request
 	    $sth->execute($execute);//execute la requette sql
@@ -80,19 +81,33 @@ function creeDossier(){
 	return $idDossier;
 }
 
+function verifFile($fileUpload){	
+$maxFileSize = 1024 * 100; // 100 kB
+$tailleFile=filesize($fileUpload);
+echo $tailleFile;
+if ($tailleFile>$maxFileSize) {
+	$erreur='file size is too big';
+	echo $erreur;
+	return $erreur;
+}
+else {
+echo "filesize OK";
+}
+}
+
 function verifChamps($sender, $receiver, $fileUpload){
 
-	if ($sender && $receiver && $fileUpload){
+	if ((filter_var($sender, FILTER_VALIDATE_EMAIL)) && (filter_var($receiver, FILTER_VALIDATE_EMAIL)) && $fileUpload){
+		echo ("Success"."\n\n");
 		return true;
 	} else {
+		echo ("$failure"."\n\n");
 		return false;
 	}
 }
 
 function envoieMail($sender, $receiver, $idDossier){
-	echo $sender."\r\n";
-	echo $receiver."\r\n";
-
+	
 	$mail=$sender;
 	$sujet="Download file";
 	$header='';
@@ -112,11 +127,13 @@ function envoieMail($sender, $receiver, $idDossier){
 	mail($mail,$sujet,$message,$header);
 }
 
-function inserChamps($idDossier,$mailEmetteur,$mailRecepteur){
+function inserChamps($idDossier,$mailEmetteur,$mailRecepteur,$messageUser,$dateUpload,$nbDay){
+
+	echo $idDossier; echo $mailEmetteur; echo $mailRecepteur; echo $messageUser; echo $dateUpload; echo $nbDay;
 	if ($idDossier != ""){
 		$sql= new SQLpdo();
-		$idGen=$sql->insert("INSERT INTO `kypaLink` (idDossier, mailEmetteur, mailRecepteur) VALUES (:idDossier, :mailEmetteur, :mailRecepteur);",
-			array(":idDossier" => $idDossier,':mailEmetteur'=> $mailEmetteur, ':mailRecepteur'=> $mailRecepteur));
+		$idGen=$sql->insert("INSERT INTO `kypaLink` (idDossier, mailEmetteur, mailRecepteur, message, dateUpload, nbDay) VALUES (:idDossier, :mailEmetteur, :mailRecepteur, :message, :dateUpload, :nbDay);",
+			array(":idDossier" => $idDossier,':mailEmetteur'=> $mailEmetteur, ':mailRecepteur'=> $mailRecepteur, ':message' => $messageUser, ':dateUpload'=>$dateUpload, ':nbDay'=>$nbDay));
 	}
 }
 function verif_alphaNum($str){
