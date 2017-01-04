@@ -84,14 +84,14 @@ function creeDossier(){
 function verifFile($fileUpload){	
 $maxFileSize = 1024 * 100; // 100 kB
 $tailleFile=filesize($fileUpload);
-echo $tailleFile;
 if ($tailleFile>$maxFileSize) {
 	$erreur='file size is too big';
 	echo $erreur;
-	return $erreur;
+	return false;
 }
 else {
 echo "filesize OK";
+return true;
 }
 }
 
@@ -106,7 +106,7 @@ function verifChamps($sender, $receiver, $fileUpload){
 	}
 }
 
-function envoieMail($sender, $receiver, $idDossier){
+function envoieMail($sender, $receiver, $idDossier, $messageUser){
 	
 	$mail=$sender;
 	$sujet="Download file";
@@ -122,9 +122,9 @@ function envoieMail($sender, $receiver, $idDossier){
     //Envoi de l'e-mail
 	$dir = URL_SITE.'index.php?action=telechargement&id='.crypteUrl($idDossier);
 
-	$message = "The file(s) has(ve) been updated, follow this link to download: \n\n $dir";
+	$message = "The file(s) has(ve) been uploaded successfully, follow this link to download: \n\n $dir";
 
-	mail($mail,$sujet,$message,$header);
+	mail($mail,$sujet,$messageUser,$header);
 }
 
 function inserChamps($idDossier,$mailEmetteur,$mailRecepteur,$messageUser,$dateUpload,$nbDay){

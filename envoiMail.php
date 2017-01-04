@@ -33,7 +33,7 @@ if (verifChamps($sender, $receiver, $fileUpload)) {
      {
           inserChamps($idDossier,$sender,$receiver,$messageUser,$dateUpload,$nbDay);
           echo 'Upload effectué avec succès !';
-          envoieMail($sender, $receiver,$idDossier);
+          envoieMail($sender, $receiver,$idDossier, $messageUser);
      }
      else //Sinon (la fonction renvoie FALSE).
      {
