@@ -9,7 +9,7 @@ function surligne(champ, erreur)
 
 function verifierEmail(champ)
 {
-	var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+	/*var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
 	if(!regex.test(champ.value))
 	{
 		surligne(champ, true);
@@ -19,7 +19,8 @@ function verifierEmail(champ)
 	{
 		surligne(champ, false);
 		return true;
-	}
+	}*/
+	return true;
 }
 
 function verifier(f){

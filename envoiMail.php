@@ -21,7 +21,7 @@ foreach ($_FILES['files'] as $key => $value) {
 }
 */
 
-$fileUpload=basename($_FILES['files']['name']);
+$fileUpload=basename($_FILES['file']['name']);
 
 //get all uploaded files
 /*foreach (basename($_FILES['files']['name']) as $fileUpload => $name) {
