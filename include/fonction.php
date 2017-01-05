@@ -102,7 +102,7 @@ function verifChamps($sender, $receiver, $fileUpload){
 		echo ("Success"."\n\n");
 		return true;
 	} else {
-		echo ("$failure"."\n\n");
+		echo ("failure"."\n\n");
 		return false;
 	}
 }

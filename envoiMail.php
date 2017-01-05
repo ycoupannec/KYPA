@@ -14,7 +14,14 @@ $messageUser=$_REQUEST['message'];
 $dateUpload=date('Y-m-d h:i:s');
 $nbDay=$_REQUEST['nbDay'];
 
-$fileUpload=basename($_FILES['file']['name']);
+
+/* $_FILES['files']
+foreach ($_FILES['files'] as $key => $value) {
+     # code...
+}
+*/
+
+$fileUpload=basename($_FILES['files']['name']);
 
 //get all uploaded files
 /*foreach (basename($_FILES['files']['name']) as $fileUpload => $name) {

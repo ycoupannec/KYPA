@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/javaScript.js"></script>
 
 </head>
 <!--style="background-image: url('img/bgd.jpg');background-size:auto 100%;background-repeat:no-repeat;"-->
@@ -218,43 +219,13 @@
     </header>
 
 <main id="formain" class="container">
-        <form id="contact-form" action="./envoiMail.php" class="form" method="post" enctype="multipart/form-data">
-            <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
-
-                        var reader = new FileReader();
-
-                        reader.onload = function(e) {
-                            $('.image-upload-wrap').hide();
-
-                            $('.file-upload-image').attr('src', e.target.result);
-                            $('.file-upload-content').show();
-
-                            $('.image-title').html(input.files[0].name);
-                        };
-
-                        reader.readAsDataURL(input.files[0]);
-
-                    } else {
-                        removeUpload();
-                    }
-                }
-
-                function removeUpload() {
-                    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                    $('.file-upload-content').hide();
-                    $('.image-upload-wrap').show();
-                }
-                $('.image-upload-wrap').bind('dragover', function() {
-                    $('.image-upload-wrap').addClass('image-dropping');
-                });
-                $('.image-upload-wrap').bind('dragleave', function() {
-                    $('.image-upload-wrap').removeClass('image-dropping');
-                });
-            </script>
+        <form id="contact-form" action="./envoiMail.php" class="form" method="post" enctype="multipart/form-data"
+        onsubmit="return verifier(this)">
+       
 
             <div id="parent" class="col-md-6 file-upload">
+
+
                 <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
                   <i class="fa fa-plus-circle" area-hidde="true"></i> Add Files
                 </button>
@@ -262,17 +233,22 @@
                <p class="filename">name_of_your_file.jpg</p>
             </div>
               <div class="image-upload-wrap">
-                    <input class="file-upload-input" type='file' name="file">
+                    <input class="file-upload-input" type='file' name="file" onchange="readURL(this);">
                     <div class="drag-text">
                         <h3>Drag and drop a file</h3>
                     </div>
                 </div>
-                <!-- <div class="file-upload-content">
+
+                <!-- <input type="file" name="files[]">
+                <div class="liste-des-inputs"></div>
+                <input type="submit" value="Submit"> -->
+
+                           <div class="file-upload-content">
                     <img class="file-upload-image" src="#" alt="your image" />
                     <div class="image-title-wrap">
-                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                        <button type="button" onclick="removeUpload()" class="remove-image">Remove<span class="image-title">Uploaded Image</span></button>
                     </div>
-                </div> -->
+                </div>
                 <div id="hover-content">
                     <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 600.28 400.89" enable-background="new 0 0 595.28 841.89" xml:space="preserve">
           <g>
@@ -291,11 +267,11 @@
             <section class="formulaire col-md-6">
                 </div>
                 <div class="group">
-                    <input type="email" name="mailSender" id="mailSender"><span class="highlight"></span><span class="bar"></span>
+                    <input type="email" name="mailSender" id="mailSender" onblur="verifierEmail(this)"><span class="highlight"></span><span class="bar"></span>
                     <label>Your buddy's email</label>
                 </div>
                 <div class="group">
-                     <input type="email"  name="mailReceiver" id="mailReceiver"><span class="highlight"></span><span class="bar"></span>
+                     <input type="email"  name="mailReceiver" id="mailReceiver" onblur="verifierEmail(this)"><span class="highlight"></span><span class="bar"></span>
                     <label>Your email</label>
                 </div>
                <div class="group">
