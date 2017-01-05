@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>KAPYBox</title>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-      <meta type="author" content="Yohann Aude Pauline Kevin" />
-      <meta type="description" content="weTransfer Like" />
-      <link rel="stylesheet" type="text/css" href="style/kapybox.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  </head>
-  <body>
+<head>
+    <title>KAPYBox</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta type="author" content="Yohann Aude Pauline Kevin" />
+    <meta type="description" content="weTransfer Like" />
+    <link rel="stylesheet" type="text/css" href="css/kapybox.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<!--style="background-image: url('img/bgd.jpg');background-size:auto 100%;background-repeat:no-repeat;"-->
+<body >
     <header>
-      <div class="page-header">
-        <h1>
+        <div class="page-header">
+            <h1 class="intro-copy">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         	 width="100px" height="50px" viewBox="0 0 595.28 841.89" enable-background="new 0 0 595.28 841.89" xml:space="preserve">
         <g id="Calque_1">
@@ -212,34 +214,250 @@
         </svg>
         KAPYBox
         </h1>
-      </div>
+        </div>
     </header>
 
-<main class="container">
-    <form method="post" action="./envoiMail.php" onsubmit="return verifier(this)" enctype="multipart/form-data">
-      <div class="col-md-6">
-        <h2><i class="fa fa-plus-circle" aria-hidden="true"></i> Add files</h2>
-        <input type="file" id = "file" name="file"><br>
-        <label for="">Your message:</label>
-        <input type="text" id = "message" name="message"><br><br>
-        <label for="">Period for the file:</label>
-        <input type="number" step="1" value="15" name="nbDay">
+<main id="formain" class="container">
+        <form id="contact-form" action="./envoiMail.php" class="form" method="post" enctype="multipart/form-data">
+            <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('.image-upload-wrap').hide();
+
+                            $('.file-upload-image').attr('src', e.target.result);
+                            $('.file-upload-content').show();
+
+                            $('.image-title').html(input.files[0].name);
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+
+                    } else {
+                        removeUpload();
+                    }
+                }
+
+                function removeUpload() {
+                    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                    $('.file-upload-content').hide();
+                    $('.image-upload-wrap').show();
+                }
+                $('.image-upload-wrap').bind('dragover', function() {
+                    $('.image-upload-wrap').addClass('image-dropping');
+                });
+                $('.image-upload-wrap').bind('dragleave', function() {
+                    $('.image-upload-wrap').removeClass('image-dropping');
+                });
+            </script>
+
+            <div id="parent" class="col-md-6 file-upload">
+                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
+                  <i class="fa fa-plus-circle" area-hidde="true"></i> Add Files
+                </button>
+            <div >
+               
+            </div>
+              <div class="image-upload-wrap">
+                    <input class="file-upload-input" type='file' name="file">
+                    <div class="drag-text">
+                        <h3>Drag and drop a file</h3>
+                    </div>
+                </div>
+                <!-- <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image" />
+                    <div class="image-title-wrap">
+                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                    </div>
+                </div> -->
+                <div id="hover-content">
+                    <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 600.28 400.89" enable-background="new 0 0 595.28 841.89" xml:space="preserve">
+          <g>
+          	<g id="XMLID_1_">
+          		<g>
+          			<polygon fill="#7fa5e2" points="308.689,213.595 486.939,420.945 126.33,420.575 308.399,213.845 			"/>
+          		</g>
+          	  </g>
+            </g>
+                    </svg>
+                    <i class="fa fa-info-circle fa fa-3x" aria-hidden="true"></i>
+                    <p>You can upload up to 100KB per file of data !</p>
+                </div>
+            </div>
+
+            <section class="formulaire col-md-6">
+                </div>
+                <div class="group">
+                    <input type="email" name="mailSender" id="mailSender"><span class="highlight"></span><span class="bar"></span>
+                    <label>Your buddy's email</label>
+                </div>
+                <div class="group">
+                     <input type="email"  name="mailReceiver" id="mailReceiver"><span class="highlight"></span><span class="bar"></span>
+                    <label>Your email</label>
+                </div>
+    <!--            <div class="group">
+                    <textarea type="text"></textarea><span class="highlight"></span><span class="bar"></span>
+                    <label>Your message</label>
+                </div>
+                <div class="group">
+                  <input type="number" name="time" min="1" max="20" placeholder="20 days max..."><span class="highlight"></span><span class="bar"></span>
+                  <label>Select your period of time</label>
+                </div> -->
+              </section>
+                <button class="pull-right col-md-2 col-xs-12 buttonSend buttonBlue" type="submit"><i class="fa fa-send" area-hidden="true"></i> Send file
+                <div class="ripples buttonRipples">
+                <span class="ripplesCircle"></span>
+                </div>
+                </button>
+            <script>
+                $(window, document, undefined).ready(function() {
+
+                    $('input').blur(function() {
+                        var $this = $(this);
+                        if ($this.val())
+                            $this.addClass('used');
+                        else
+                            $this.removeClass('used');
+                    });
+
+                    var $ripples = $('.ripples');
+
+                    $ripples.on('click.Ripples', function(e) {
+
+                        var $this = $(this);
+                        var $offset = $this.parent().offset();
+                        var $circle = $this.find('.ripplesCircle');
+
+                        var x = e.pageX - $offset.left;
+                        var y = e.pageY - $offset.top;
+
+                        $circle.css({
+                            top: y + 'px',
+                            left: x + 'px'
+                        });
+
+                        $this.addClass('is-active');
+
+                    });
+
+                    $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+                        $(this).removeClass('is-active');
+                    });
+
+                });
+            </script>
+
+        </form>
+</main>
+
+<main id="info">
+  <a href="#abtus">
+  <button type="button" class="center-block knowmore buttonBlue">
+    <i class="fa fa-arrow-down" area-hidden="true"></i> Know more
+    </div>
+  </button>
+  </a>
+<section  id="abtus" class="container">
+  <article class="col-md-10">
+      <div class="col-md-2">
+        <svg height="70px" style="enable-background:new 0 0 110 110;" version="1.0" viewBox="0 0 110 110" width="110px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="R-Multicolor"><circle cx="55" cy="55" r="55" style="fill:#5D91CC;"/>
+            <g><path
+                d="M83.485,66.502c-3.139-3.139-7.582-4.164-11.583-3.098L50.167,41.67    c1.747-4.929,0.664-10.637-3.28-14.582c-3.947-3.947-9.659-5.029-14.591-3.277l10.348,10.348v5.657l-2.828,2.828h-5.657    L23.811,32.296c-1.751,4.932-0.669,10.644,3.277,14.591c3.949,3.949,9.666,5.03,14.6,3.274l21.728,21.728    c-1.066,4.002-0.041,8.445,3.098,11.584c4.686,4.686,12.284,4.686,16.971,0C88.172,78.787,88.172,71.189,83.485,66.502z     M76.866,81.953l-6.965-1.866l-1.866-6.965l5.099-5.099l6.965,1.866l1.866,6.965L76.866,81.953z"
+                style="fill:#E2E4E5;"/><path
+                d="M71.902,63.404L50.167,41.67c1.747-4.929,0.664-10.637-3.28-14.582    c-3.947-3.947-9.659-5.029-14.591-3.277l10.348,10.348v5.657l-1.355,1.355l29.348,29.348l2.497-2.497l6.965,1.866l1.866,6.965    l-2.497,2.497l4.067,4.067c4.633-4.69,4.619-12.247-0.05-16.916C80.346,63.363,75.903,62.338,71.902,63.404z"
+                style="fill:#FFFFFF;"/><path
+                d="M53.788,68.08c0.757-0.757,1.055-1.864,0.778-2.899c-0.268-1.001-0.009-2.114,0.777-2.899    l2.828-2.828c0.391-0.391,0.391-1.024,0-1.414l-5.657-5.657c-0.391-0.391-1.024-0.391-1.414,0l-2.828,2.828    c-0.785,0.785-1.898,1.044-2.899,0.777c-1.036-0.277-2.141,0.02-2.899,0.778L24.23,75.01c-3.536,3.536,7.778,14.849,11.314,11.314    L53.788,68.08z"
+                style="fill:#DF2C2C;"/><polygon points="83.187,24.539 71.166,30.903 70.459,35.853 53.222,53.09 57.464,57.333 74.702,40.095     79.581,39.459 86.095,27.447   " style="fill:#E2E4E5;"/><polygon points="83.187,24.539 71.166,30.903 70.459,35.853 53.222,53.09 55.566,55.434 84.824,26.176       " style="fill:#FFFFFF;"/><path
+                d="M52.515,52.383c-0.391-0.391-1.023-0.391-1.414,0l-2.829,2.829    c-0.785,0.786-1.898,1.044-2.899,0.776c-1.036-0.277-2.141,0.021-2.899,0.779L24.23,75.01c-1.814,1.814,0.284,5.674,3.232,8.527    l28.104-28.103L52.515,52.383z"
+                style="fill:#FA5655;"/></g>
+          </g>
+        </svg>
       </div>
+      <h3 class="title3">How to ?</h3>
+        <p class="col-md-6">You just have to add a file, type the receiver's email, your email, select a time period during your file will be available and add if you will a small message.</p>
+   </article>
 
-      <div class="form-group col-md-6">
-        <label for="">Receiver's Email</label>
-        <input type="email" name="mailSender" id="mailSender" placeholder="Receiver's Email" onblur="verifierEmail(this)">
-        <label for="">Your Email</label>
-        <input type="email" class="form-control"  name="mailReceiver" id="mailReceiver" placeholder="Your Email" onblur="verifierEmail(this)">
+   <article class="collabtool col-md-10">
+      <div class="col-md-2">
+        <svg height="70px" style="enable-background:new 0 0 110 110;" version="1.0" viewBox="0 0 110 110" width="110px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Artboard"/>
+          <g id="Multicolor"><circle cx="55" cy="55" r="55" style="fill:#E04F5F;"/>
+            <g><path d="M23,26.84c0-2.121,1.719-3.84,3.84-3.84H55l16,13.44v46.72c0,2.121-1.719,3.84-3.84,3.84H26.84    C24.719,87,23,85.281,23,83.16V26.84z" style="fill:#FFFFFF;"/><path d="M55,23v9.6c0,2.121,1.719,3.84,3.84,3.84H71L55,23z" style="fill:#F0F1F1;"/><polygon points="77,41.5 82,31 87,41.5 87,80 77,80   " style="fill:#F4D0A1;"/><polygon points="87,47 87,41.5 82,31 82,47   " style="fill:#EDBC7C;"/><path d="M87,84c0,1.657-1.343,3-3,3h-4c-1.657,0-3-1.343-3-3v-2h10V84z" style="fill:#F79392;"/><path d="M62,45c0,0.55-0.45,1-1,1H46c-0.55,0-1-0.45-1-1l0,0c0-0.55,0.45-1,1-1h15C61.55,44,62,44.45,62,45    L62,45z" style="fill:#E2E4E5;"/><path d="M56,50c0,0.55-0.45,1-1,1h-9c-0.55,0-1-0.45-1-1l0,0c0-0.55,0.45-1,1-1h9C55.55,49,56,49.45,56,50    L56,50z" style="fill:#E2E4E5;"/><path d="M62,58c0,0.55-0.45,1-1,1H46c-0.55,0-1-0.45-1-1l0,0c0-0.55,0.45-1,1-1h15C61.55,57,62,57.45,62,58    L62,58z" style="fill:#E2E4E5;"/><path d="M56,63c0,0.55-0.45,1-1,1h-9c-0.55,0-1-0.45-1-1l0,0c0-0.55,0.45-1,1-1h9C55.55,62,56,62.45,56,63    L56,63z" style="fill:#E2E4E5;"/><path d="M62,71c0,0.55-0.45,1-1,1H46c-0.55,0-1-0.45-1-1l0,0c0-0.55,0.45-1,1-1h15C61.55,70,62,70.45,62,71    L62,71z" style="fill:#E2E4E5;"/><path d="M56,76c0,0.55-0.45,1-1,1h-9c-0.55,0-1-0.45-1-1l0,0c0-0.55,0.45-1,1-1h9C55.55,75,56,75.45,56,76    L56,76z" style="fill:#E2E4E5;"/>
+                <g><path d="M35.067,52l-3.774-3.774c-0.391-0.39-0.391-1.024,0-1.414c0.391-0.391,1.024-0.391,1.414,0     l2.226,2.226l4.299-5.159c0.354-0.425,0.984-0.482,1.408-0.128c0.424,0.354,0.482,0.984,0.128,1.408L35.067,52z" style="fill:#17B198;"/></g>
+                <g><path d="M35.067,65l-3.774-3.774c-0.391-0.39-0.391-1.024,0-1.414c0.391-0.391,1.024-0.391,1.414,0     l2.226,2.226l4.299-5.159c0.354-0.425,0.984-0.482,1.408-0.128c0.424,0.354,0.482,0.984,0.128,1.408L35.067,65z" style="fill:#17B198;"/></g>
+                <g><path d="M35.067,78l-3.774-3.774c-0.391-0.39-0.391-1.024,0-1.414c0.391-0.391,1.024-0.391,1.414,0     l2.226,2.226l4.299-5.159c0.354-0.425,0.984-0.482,1.408-0.128c0.424,0.354,0.482,0.984,0.128,1.408L35.067,78z" style="fill:#17B198;"/></g><rect height="3" style="fill:#FACB1B;" width="10" x="77" y="79"/><rect height="2" style="fill:#FBE158;" width="5" x="77" y="80"/><path d="M82.013,30.984l-1.857,3.899c0.512,0.678,1.152,1.101,1.857,1.101s1.345-0.422,1.857-1.101    L82.013,30.984z" style="fill:#3E3E3F;"/><path
+                    d="M84.5,43c-1.154,0-2.126-0.782-2.413-1.845c-0.026-0.097-0.147-0.097-0.173,0    C81.626,42.218,80.654,43,79.5,43c-1.052,0-1.953-0.65-2.322-1.571C77.139,41.332,77,41.359,77,41.464V80h10V41.464    c0-0.105-0.139-0.131-0.178-0.034C86.453,42.35,85.552,43,84.5,43z"
+                    style="fill:#0484AB;"/><path d="M77,80V41.493c0-0.111,0.147-0.139,0.19-0.036C77.565,42.363,78.458,43,79.5,43    c1.159,0,2.134-0.789,2.417-1.859C81.931,41.089,82,41.096,82,41.15V80H77z" style="fill:#21B2D1;"/><path d="M77,82v2c0,1.657,1.343,3,3,3h2v-5H77z" style="fill:#F7B4B4;"/></g>
+          </g>
+        </svg>
       </div>
+      <h3 class="title3">Collaborative Tool</h3>
+        <p class="col-md-6">Kapybox is a tool for sharing any type of file, you can upload up to 100 K/Bs of data. Usefull for presentation, take your file anywhere without any USBKey.</p>
+   </article>
 
-      <button class="center-block btn btn-primary submitbtn" type="submit">Upload!</button>
+  <article class="col-md-10">
+      <div class="col-md-2">
+        <svg height="70px" style="enable-background:new 0 0 110 110;" version="1.0" viewBox="0 0 110 110" width="110px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Artboard"/>
+          <g id="Multicolor">
+            <g><path d="M110,54.976c0,30.362-24.642,56.302-54.976,54.976c-31.69-1.385-55.601-25.265-54.976-54.976    C0.687,24.62,24.662,0,55.024,0S110,24.613,110,54.976z" style="fill:#5D91CC;"/></g>
+            <g><path d="M72,58c0-8,0-16,0-16c0-9.389-7.611-17-17-17s-17,7.611-17,17c0,0,0,8,0,16c0,10-9,8-9,8s1,8,14,8    c10.177,0,11.769,0,11.982,0c0.005,0,0.014,0,0.018,0c0.153,0,1.571,0,12,0c13,0,14-8,14-8S72,68,72,58z" style="fill:#84462D;"/><path d="M38,42c0,0,0,8,0,16c0,10-9,8-9,8s1,8,14,8c10.177,0,11.769,0,11.982,0c0.005,0,0.014,0,0.018,0V25    C45.611,25,38,32.611,38,42z" style="fill:#9C6144;"/><path d="M83.409,77.663c-0.889-2.311-2.797-4.08-5.168-4.791L62,69l-7,1l-7-1l-16.241,3.872    c-2.371,0.711-4.279,2.48-5.168,4.791L23,87h32h32L83.409,77.663z" style="fill:#3E3E3F;"/><path d="M55,69v18h2l8-17v-8.567C62.159,65.829,58.284,67.905,55,69z" style="fill:#F7B4B4;"/><path d="M45,61.433V70l8,17h2V69C51.716,67.905,47.841,65.829,45,61.433z" style="fill:#FBC8C8;"/><path
+                d="M70,45c-0.277,0-0.633,0-1,0c0-0.007,0-0.014,0-0.021c-0.004-1.901-0.053-3.754-0.249-5.498    C68.117,41.514,66.242,43,64,43c-1.991,0-3.696-1.172-4.5-2.856C58.696,41.828,56.991,43,55,43s-3.696-1.172-4.5-2.856    C49.696,41.828,47.991,43,46,43c-2.242,0-4.117-1.486-4.751-3.519c-0.195,1.744-0.245,3.597-0.249,5.498c0,0.007,0,0.014,0,0.021    c-0.368,0-0.723,0-1,0c-1,0-2,1.111-2,2.222c0,3.091,0.864,7.13,4.178,7.703C44.62,64.027,50.396,67.465,55,69    c4.604-1.535,10.38-4.973,12.822-14.075C71.136,54.353,72,50.313,72,47.222C72,46.111,71,45,70,45z"
+                style="fill:#FBC8C8;"/><path
+                d="M50.5,40.144C49.696,41.828,47.991,43,46,43c-2.242,0-4.117-1.486-4.751-3.519    c-0.195,1.744-0.245,3.597-0.249,5.498c0,0.007,0,0.014,0,0.021c-0.368,0-0.723,0-1,0c-1,0-2,1.111-2,2.222    c0,3.091,0.864,7.13,4.178,7.703C44.62,64.027,50.396,67.465,55,69V43C53.009,43,51.304,41.828,50.5,40.144z"
+                style="fill:#FBD7D7;"/>
+                <g><path d="M50,58h10c0,0,0,3-5,3S50,58,50,58z" style="fill:#F79392;"/></g>
+                <g><path d="M45,67c0,1,4.465,15.848,10,20h-3c0,0-10-13-15-13C38,69,45,67,45,67z" style="fill:#FFFFFF;"/></g>
+                <g><path d="M65,67c0,1-4.465,15.848-10,20h3c0,0,10-13,15-13C72,69,65,67,65,67z" style="fill:#FFFFFF;"/></g>
+                <g><path d="M52.006,46.956c0-1.104-0.896-2-2-2c-0.002,0-0.004,0-0.006,0     c0.001,0.021,0.006,0.041,0.006,0.062c0,1.103-0.892,1.996-1.994,2c0.033,1.075,0.91,1.938,1.994,1.938     C51.111,48.956,52.006,48.06,52.006,46.956z" style="fill:#3E3E3F;"/></g>
+                <g><path d="M62,46.956c0-1.104-0.896-2-2-2c-0.002,0-0.004,0-0.006,0C59.995,44.977,60,44.997,60,45.018     c0,1.103-0.892,1.996-1.994,2c0.033,1.075,0.91,1.938,1.994,1.938C61.104,48.956,62,48.06,62,46.956z" style="fill:#3E3E3F;"/></g>
+                <g>
+                    <g><path d="M80,86c0,0.55-0.45,1-1,1H68c-0.55,0-1-0.45-1-1v-7c0-0.55,0.45-1,1-1h11c0.55,0,1,0.45,1,1V86z" style="fill:#FFFFFF;"/></g>
+                    <g><rect height="5" style="fill:#9CE5F4;" width="4" x="68" y="81"/></g>
+                    <g>
+                        <g><path d="M75,79h-3v-1.5c0-0.825,0.675-1.5,1.5-1.5s1.5,0.675,1.5,1.5V79z" style="fill:#9CE5F4;"/></g>
+                        <g><path d="M80,80H67v-1c0-0.55,0.45-1,1-1h11c0.55,0,1,0.45,1,1V80z" style="fill:#9CE5F4;"/></g>
+                    </g>
+                </g><path
+                    d="M58.818,59.97h-7.637c-0.769,0-1.441,0.399-1.83,1H48c-2.075,0-6-1.254-6-6V45h-2.333    C37.089,45,35,47.089,35,49.667s2.089,4.667,4.667,4.667H40v0.636c0,5.87,4.784,8,8,8h1.162c0.324,0.799,1.105,1.364,2.02,1.364    h7.637c1.205,0,2.182-0.977,2.182-2.182C61,60.947,60.023,59.97,58.818,59.97z"
+                    style="fill:#3E3E3F;"/></g>
+          </g>
+        </svg>
+      </div>
+      <h3 class="title3">About Us</h3>
+        <p class="col-md-6">A small team of four people extremly talented and gifted. From Access Code School Picasso, Besançon, France.</p>
+   </article>
 
-    </form>
-  </main>
+ </section>
 
+
+
+ <a href="#btop">
+   <div class="back-to-top buttonBlue">
+     <i class="fa fa-arrow-up" area-hidden="true"></i> To the Top
+   </div>
+ </a>
+
+<script type="text/javascript">
+  var $backToTop = $(".back-to-top");
+  $backToTop.hide();
+
+  $(window).on('scroll', function() {
+    if ($(this).scrollTop() > 100) {
+      $backToTop.fadeIn();
+    } else {
+      $backToTop.fadeOut();
+    }
+  });
+  $backToTop.on('click', function(e) {
+  $("html, body").animate({scrollTop: 0}, 500);
+  });
+</script>
     <footer>
     </footer>
+</main>
+</body>
 
-  </body>
 </html>
