@@ -31,6 +31,10 @@
     echo $m->render('page_download',array('FICHIER'=>affichContDossier($idDecrypte)));
   }
   else{
+    
     echo $m->render('Page1');
+    verifDateDossier();
+    
+
     /*print_r(affichContDossier('586a7186b2773'));*/
   }

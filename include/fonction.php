@@ -3,7 +3,8 @@
 /*------------------------------------------------------------------------*/
 /*require les variables pour la connexion SQL dans le fichier .ini.php*/
 /*------------------------------------------------------------------------*/
-
+require_once "include/Mustache/Autoloader.php";
+Mustache_Autoloader::register();
 require_once ".init.php";
 
 
@@ -108,28 +109,35 @@ function verifChamps($sender, $receiver, $fileUpload){
 
 function envoieMail($sender, $receiver, $idDossier, $messageUser){
 	
+	$m = new Mustache_Engine();
+
 	$mail=$sender;
 	$sujet="Download file";
 	$header='';
-	$header.= 'From:'.$sender."\r\n";
+	$header.= 'From:'.$receiver."\r\n";
 	$header.='Reply-to:KAPYBox'."\r\n";
 	$header.='X-Mailer: PHP/'.phpversion()."\r\n";
-	$header.= 'Content-type: text/plain; charset=utf-8'."\r\n";
-
-	ini_set('display_error','on');
-	error_reporting (E_ALL);      
-
-    //Envoi de l'e-mail
+	$header.= 'Content-type: text/html; charset=utf-8'."\r\n";
 	$dir = URL_SITE.'index.php?action=telechargement&id='.crypteUrl($idDossier);
+	ini_set('display_error','on');
+	error_reporting (E_ALL);
+	$contenuMail=file_get_contents('./template/mail.html');     
+	
+	
+    //Envoi de l'e-mail
+	
 
-	$message = "The file(s) has(ve) been uploaded successfully, follow this link to download: \n\n $dir";
+	$message = $m->render($contenuMail,array('LIEN'=>$dir));
 
-	mail($mail,$sujet,$messageUser,$header);
+	if (mail($mail,$sujet,$message,$header)==false){
+		
+	}
 }
 
 function inserChamps($idDossier,$mailEmetteur,$mailRecepteur,$messageUser,$dateUpload,$nbDay){
 
 	echo $idDossier; echo $mailEmetteur; echo $mailRecepteur; echo $messageUser; echo $dateUpload; echo $nbDay;
+
 	if ($idDossier != ""){
 		$sql= new SQLpdo();
 		$idGen=$sql->insert("INSERT INTO `kypaLink` (idDossier, mailEmetteur, mailRecepteur, message, dateUpload, nbDay) VALUES (:idDossier, :mailEmetteur, :mailRecepteur, :message, :dateUpload, :nbDay);",
@@ -143,4 +151,47 @@ function verif_alphaNum($str){
         return false;
     }
     return true;
+}
+
+function dateCompar($dateOrig,$nbJour){
+	
+	$dateSQL = new DateTime($dateOrig);
+	$dateSQL->add(new DateInterval('P'.$nbJour.'D'));
+	$dateActu=new DateTime();
+	if ($dateSQL>=$dateActu){
+		/*à supprimer*/
+		return true;	
+	}
+	return false;	
+	
+}
+
+function litEnregSQL(){
+	$sql= new SQLpdo();
+	$contenu=$sql->fetchAll("SELECT * FROM `kypaLink`;");
+	return $contenu;
+}
+
+
+function supprFich($dir) { 
+   $files = array_diff(scandir($dir), array('.','..')); 
+    foreach ($files as $file) { 
+      (is_dir("$dir/$file")) ? supprFich("$dir/$file") : unlink("$dir/$file"); 
+    } 
+    return rmdir($dir); 
+} 
+
+function verifDateDossier(){
+
+	$tabDossiers=litEnregSQL();
+	foreach ($tabDossiers as $tabDossier) {
+		if (dateCompar($tabDossier['dateUpload'],$tabDossier['nbDay'])==false){
+			echo $tabDossier['idDossier'];
+			supprFich('./public/'.$tabDossier['idDossier']);
+			$sql= new SQLpdo();
+			$sql->insert("DELETE FROM `kypaLink` WHERE kypaLink.idDossier =:idDossier ;",array(":idDossier" => $tabDossier['idDossier']));
+
+		}
+	}
+	
 }
