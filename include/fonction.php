@@ -107,10 +107,12 @@ function verifChamps($sender, $receiver, $fileUpload){
 	}
 }
 
-function envoieMail($sender, $receiver, $idDossier, $messageUser){
+function envoieMail($sender, $receiver, $idDossier, $messageUser="messageUser"){
 	
 	$m = new Mustache_Engine();
-
+	$tabDossier=infoDocBDD($idDossier);
+	print_r($tabDossier);
+	
 	$mail=$sender;
 	$sujet="Download file";
 	$header='';
@@ -121,13 +123,25 @@ function envoieMail($sender, $receiver, $idDossier, $messageUser){
 	$dir = URL_SITE.'index.php?action=telechargement&id='.crypteUrl($idDossier);
 	ini_set('display_error','on');
 	error_reporting (E_ALL);
-	$contenuMail=file_get_contents('./template/mail.html');     
+	$contenuMail=file_get_contents('./template/mail.html'); 
+	$dateCrea= new DateTime($tabDossier['dateUpload']);
+	$dateSuppr= new DateTime($tabDossier['dateUpload']);
+	
+	
+	$dateSuppr->add(new DateInterval('P'.$tabDossier['nbDay'].'D'));
+	
+	
+	$resDateCrea=$dateCrea->format('Y-m-d');
+	$resDateSuppr=$dateSuppr->format('Y-m-d');
+
+	
 	
 	
     //Envoi de l'e-mail
+
 	
 
-	$message = $m->render($contenuMail,array('LIEN'=>$dir));
+	$message = $m->render($contenuMail,array('LIEN'=>$dir, 'MESSAGE'=>$messageUser, 'MAIL'=>$tabDossier['mailEmetteur'], 'DATECREA'=>$resDateCrea, 'DATESUPP'=>$resDateSuppr, 'LIENSITE'=>URL_SITE));
 
 	if (mail($mail,$sujet,$message,$header)==false){
 		
@@ -194,4 +208,26 @@ function verifDateDossier(){
 		}
 	}
 	
+}
+
+function verifDocBDD($idDossier){
+
+	$sql= new SQLpdo();
+	$contenu=$sql->fetch("SELECT * FROM `kypaLink` WHERE idDossier= :idDossier;",array(":idDossier" => $idDossier));
+	if(count($contenu)>1){
+		return true;	
+	}
+	return false;
+
+
+}
+
+function infoDocBDD($idDossier){
+
+	$sql= new SQLpdo();
+	$contenu=$sql->fetch("SELECT * FROM `kypaLink` WHERE idDossier= :idDossier;",array(":idDossier" => $idDossier));
+	
+	return $contenu;
+
+
 }
