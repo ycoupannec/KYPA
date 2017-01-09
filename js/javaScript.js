@@ -43,8 +43,6 @@ function verifier(f){
 			alert('Error: ' + data);
 		});*/
 
-		
-		
 		return true;
 
 	}
@@ -53,63 +51,36 @@ function verifier(f){
 		return false;
 	}
 }
-
-/*$(document).ready(function() {
-
-                        $('.file-upload-input').change(function() {
-                            $fileOkName=$(this);
-                            console.log($fileOkName);
-                            $myarr=$fileOkName.split("/");
-                            console.log($myarr);
-                            $fileNameToDisplay=$myarr[2];
-                            console.log($fileNameToDisplay);
-
-                        });
-
-                    });*/
-
-
-                  /*  $(document).ready(function(){*/
-                    	/*("input[type=file]").click(function(){
-                    		console.log(this.files[0].name);
-                    		console.log(this.files[1].name);
-                    		$(this).val("");
-                    	});*/
-
-                    	/*$("input[type=file]").change(function(){
-                    		console.log($(this));
-                    		console.log($(this).val());
-                    		$('.liste-des-inputs').append('<input type="file" name="files[]">');                    	
-                    	});
-                    });
-
-*/
-
-                    
-
-
-
-
-
-
-
-
-
-
-
+             
 // drag and drop 
 function readURL(input) {
+
+// format OK to be displayed
+var fileTypes= ['jpg','jpeg','png'];
 	if (input.files && input.files[0]) {
 
+		$fileName=input.files[0].name;
+		var extension = $fileName.split('.').pop().toLowerCase();
+		
 		var reader = new FileReader();
 
 		reader.onload = function(e) {
 			$('.image-upload-wrap').hide();
 
-			$('.file-upload-image').attr('src', e.target.result);
-			$('.file-upload-content').show();
+			if ((fileTypes.indexOf(extension)) > -1) {
 
+			$('.file-upload-image').attr('src', e.target.result);
+			$('.file-upload-image').show();
+			$('.file-upload-content').show();
 			$('.image-title').html(input.files[0].name);
+			}
+			else {
+			/*document.getElementById("filename").innerHTML = $fileName;*/
+			$('.file-upload-image').attr('src', e.target.result);
+			$('.file-upload-image').hide();
+			$('.file-upload-content').show();
+			$('.image-title').html(input.files[0].name);
+			}
 		};
 
 		reader.readAsDataURL(input.files[0]);
