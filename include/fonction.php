@@ -54,8 +54,9 @@ function affichContDossier($idDossier){
 			if($fichier != '.' && $fichier != '..' && $fichier != 'index.php')
 			{
 				$stat=stat( realpath ($cheminDossier.'/'.$fichier));
-				$allFichier[]= array('NOM'=>$fichier, 'TAILLE'=> $stat["size"].' octets', 'DATE'=> date ("F d Y H:i:s.", $stat["mtime"]), 'CHEMIN'=>URL_SITE.$cheminDossier.'/'.$fichier);
+				$allFichier[]= array('NOM'=>$fichier, 'TAILLE'=> formatBytes($stat["size"]), 'DATE'=> date ("F d Y H:i:s.", $stat["mtime"]), 'CHEMIN'=>URL_SITE.$cheminDossier.'/'.$fichier);
 				$i++;
+				
 			}			
 		}
 		if ($i>0){
@@ -126,7 +127,10 @@ function envoieMail($sender, $receiver, $idDossier, $messageUser="messageUser"){
 	$contenuMail=file_get_contents('./template/mail.html'); 
 	$dateCrea= new DateTime($tabDossier['dateUpload']);
 	$dateSuppr= new DateTime($tabDossier['dateUpload']);
-	
+	$mess = $tabDossier['message'];
+	$tabContDoss=affichContDossier($idDossier);
+	/*print_r($tabContDoss);
+	exit;*/
 	
 	$dateSuppr->add(new DateInterval('P'.$tabDossier['nbDay'].'D'));
 	
@@ -141,7 +145,7 @@ function envoieMail($sender, $receiver, $idDossier, $messageUser="messageUser"){
 
 	
 
-	$message = $m->render($contenuMail,array('LIEN'=>$dir, 'MESSAGE'=>$messageUser, 'MAIL'=>$tabDossier['mailEmetteur'], 'DATECREA'=>$resDateCrea, 'DATESUPP'=>$resDateSuppr, 'LIENSITE'=>URL_SITE));
+	$message = $m->render($contenuMail,array('LIEN'=>$dir, 'MESSAGE'=>$messageUser, 'MAIL'=>$tabDossier['mailEmetteur'], 'DATECREA'=>$resDateCrea, 'DATESUPP'=>$resDateSuppr, 'LIENSITE'=>URL_SITE, 'MESSAGE'=> $mess, 'FICHIER'=>$tabContDoss,));
 
 	if (mail($mail,$sujet,$message,$header)==false){
 		
@@ -231,3 +235,19 @@ function infoDocBDD($idDossier){
 
 
 }
+
+function formatBytes($bytes, $precision = 2) { 
+    $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+
+    $bytes = max($bytes, 0); 
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+
+    $pow = min($pow, count($units) - 1); 
+   /* print_r($pow);
+    exit;*/
+     /*Uncomment one of the following alternatives*/
+     $bytes /= pow(1024, $pow);
+     /*$bytes /= (1 << (10 * $pow)); */
+
+    return round($bytes, $precision) . ' ' . $units[$pow]; 
+} 

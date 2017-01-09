@@ -262,6 +262,7 @@
                                                                         Hello, </br> 
                                                                         {{MAIL}}</h2>
                                                                         <p> Sent new file available on our Web site :<a href="{{LIENSITE}}">KAPYBox</a> </p>
+                                                                        <p><b>Message: </b></br>  "{{MESSAGE}}" </br></p>
                                                                 </td>
 
                                                             <tr>
@@ -282,8 +283,8 @@
                                                                                     <polygon style="fill:#FFFFFF;" points="47.39,52.695 40.39,45.988 41.865,44.574 47.39,49.867 52.914,44.574 54.39,45.988      "/>
                                                                                 </g>
                                                                             </g>
-                                                                        </svg></a>
-                                                                        <a href="{{LIEN}}">Download</a>
+                                                                        </svg></a></br>
+                                                                        <a href="{{LIEN}}">Click here for download</a>
 
                                                                         
                                                                     </div>
@@ -292,9 +293,15 @@
                                                                 <td class="w275"  width="275" valign="top">
                                                                     <div align="left" class="article-content">
                                                                         <ul>
-                                                                            <li> Creation date : {{DATECREA}}</li>
+                                                                            <li><b> Creation date :</b> {{DATECREA}}</li>
                                                                             <!-- <li> Taille : {{TAILLE}}</li> -->
-                                                                            <li> Deletion date : {{DATESUPP}}</li>
+                                                                            <li><b> Deletion date :</b> {{DATESUPP}}</li>
+                                                                        </ul>
+                                                                        <p><b>File list:</b></p>
+                                                                        <ul>
+                                                                            {{#FICHIER}}
+                                                                            <li><b>Name:</b> {{NOM}}    <b>Size:</b> {{TAILLE}}</li>
+                                                                            {{/FICHIER}}
                                                                         </ul>
                                                                     </div>
                                                                 </td>
