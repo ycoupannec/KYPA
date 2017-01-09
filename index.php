@@ -21,7 +21,9 @@
 
   if (isset($_GET['action']) && $_GET['action'] =="envoiMail" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])==39){
 
-    $tabM=array('LINK'=>URL_SITE.'index.php?action=telechargement&id='.$_GET['id'],);
+    $infoBDD=infoDocBDD(decrypte($_GET['id']));
+    $tabM=array('LINK'=>URL_SITE.'index.php?action=telechargement&id='.$_GET['id'], 'NBDAYS'=>$infoBDD['nbDay']);
+
     echo $m->render('pageReussite',$tabM);
 
 
