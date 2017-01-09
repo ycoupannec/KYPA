@@ -232,14 +232,15 @@
           Congratulation! Your file has been sent! <br>
           You can download it right down below or in your mailbox.
         </p>
-        <!-- <p class="timeAvailable"> The file you've just sent will be available during 7 days. -->
+        <p class="timeAvailable"> The file you've just sent will be available during {{NBDAYS}} days. 
         </p>
 
       </article>
 
       <article class="download col-md-12">
         <label for="">Link to download</label>
-        <input type="text" class="center-block form-control" id="" placeholder=".//https:/..." value="{{LINK}}">
+        <input type="url" class="center-block form-control" id="linkDownload" placeholder=".//https:/..." value="{{LINK}}" readonly onfocus="this.select();" onclick="this.select();">
+        <button type="button" class="buttonBlue" onclick="selectElement('linkDownload');">Copy</button>
 
     </section>
 
@@ -416,6 +417,10 @@
                         scrollTop: 0
                     }, 500);
                 });
+                function selectElement($nameElement){
+                        document.getElementById($nameElement).select();
+                        document.execCommand('copy');
+                }
             </script>
             <!-- Fin de script back top -->
 </main>
