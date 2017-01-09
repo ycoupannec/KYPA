@@ -133,11 +133,11 @@ h2{
 }
 .knowmore{
   position: absolute;
-  bottom:0;
-  left:75%;
+  bottom: 10%;
   display: inline-block;
   padding: 12px 24px;
-  margin: .3em 0 1em 0;
+  margin-top: 5%;
+  margin-bottom:1%;
   vertical-align: middle;
   color: #fff;
   font-size: 16px;
@@ -217,13 +217,12 @@ section h3 {
   border-radius: 3px;
   box-shadow: 3px 3px 5px #d4d6d8;
   margin-bottom:20%;
-  padding-bottom:12%;
 }
 .congratulations{
  font-size: 26px;
  font-weight: bold;
  text-align: center;
- margin:6% 15%;
+ margin:2% 15%;
  width: 70%;
  color: #999;
 
@@ -275,5 +274,26 @@ input:focus{
 .downloadClick:hover{
   color: #92bcec;
 }
-
-
+section h3 {
+  font-size: 1.3em;
+  text-transform: uppercase;
+}
+.sctAbts{
+  border-width: 90%;
+  width: 30%;
+  margin:1.5% ;
+}
+.service{
+  font-size: 3em;
+  padding-bottom: 0.3em;
+  border-bottom: 4px solid #777;
+  margin-bottom: 7%;
+}
+.meetteam p{margin-left:3%;}
+.meetteam img{width:200px; height:200px;background:black;}
+.meetteam img:hover{background:black; opacity:.9;}
+.rSoc{text-align: left;}
+.meetteam figcaption {text-align: center;}
+article h3 {margin-left:3%;}
+figure i {color:#5d91cc;padding:3%;}
+figure i:hover{color:#38537f;}
