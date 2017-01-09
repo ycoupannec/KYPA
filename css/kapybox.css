@@ -1,27 +1,106 @@
 *{font-family: "verdana";margin:0;padding:0;box-sizing: border-box;}
-
-@font-face {
-   font-family:'Evidence';
-   src: url('font/EvidenceFont.ttf');
-}
-body{
-  /*overflow:hidden;*/
-background-image: url('img/bgd.jpg'
-background-size:auto;);
-}
-header svg{transform: scale(3);}
-header h1{font-family:"Evidence";}
-#formain{
-padding-top:3%;
-background-color: #e3e3e3;
-border-radius: 3px;
-box-shadow: 3px 3px 5px #d4d6d8;
-margin-bottom:8%;
-}
+body{}
 a, a:hover, a:active, a:visited, a:focus{text-decoration: none;}
 
-section svg{transform: scale(1.5);}
 
+
+/* HEADER */
+
+/*header pour ttes les pages */
+header svg{transform: scale(3);}
+
+header{
+background-color: #222;
+padding-bottom: 0.5%;
+width: 100%;
+margin-bottom: 2%;
+}
+
+h1{
+ color: #e3e3e3  !important;
+ font-size: 72px !important;
+ float: right;
+ margin-bottom: 0% !important;
+}
+
+.logoKapy{
+ float:left;
+ margin-top: 11%;
+}
+
+h2{
+ color:#e3e3e3  !important;
+ text-align: center;
+ font-size: 32px;
+ margin-top: 0% !important;
+}
+.blocHead{
+
+ height: 120px;
+ width: 450px;
+ margin-left: auto;
+ margin-right: auto;
+ clear: both;
+ padding-right: 1%;
+}
+/* FIN HEADER */
+
+/* FOOTER */
+.footer {
+ display: inline-block;
+ background-color: #222;
+ font-size: 32px;
+ font-weight: normal;
+ margin-top: 1em;
+ padding: 1%;
+ width: 100%;
+ bottom: 0;
+
+.social-icons{
+   a{
+     font-size:6px;
+     //color:#151922 ;
+     color:#0431B4 ;
+   i{
+     &:hover {
+       color: lighten(#4183c4 , 15%);
+   }
+   }
+ }
+}
+}
+
+.textFoot{
+ color: #e3e3e3 ;
+ text-align: center;
+}
+.blocFoot{
+ width: 250px;
+ height:100%;
+ margin-left: auto;
+ margin-right: auto;
+}
+.social-icons a i{
+ margin-right: 1%;
+}
+#github{
+ padding-left: 67px;
+}
+
+
+
+
+
+/* FIN FOOTER */
+
+#formain{
+  overflow: hidden;
+  padding-top:3%;
+  background-color: #e3e3e3;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px #d4d6d8;
+  margin-bottom:20%;
+}
 .filename{
   color:#999;
   text-align: right;
@@ -31,8 +110,6 @@ section svg{transform: scale(1.5);}
   height:20px;
   width: 99%;
 }
-
-
 
 
 /* DRAG N DROP */
@@ -162,12 +239,12 @@ left:3%;
 .formulaire{padding:2% 0; }
 .group {
 	position: relative;
-	margin-bottom: 60px;
+	margin-bottom: 4%;
 }
 input,
 textarea {
-	font-size: 18px;
-	padding: 10px 20px 10px 5px;
+	font-size:2em;
+	padding: 20px 20px 0px 5px;
 	-webkit-appearance: none;
 	display: block;
 	background: #e3e3e3;
@@ -183,20 +260,21 @@ textarea:focus { outline: none; resize: none; color:#999;}
 /* Label */
 label {
 	color: #999;
-	font-size: 18px;
+	font-size: 1em;
 	font-weight: normal;
 	position: absolute;
 	pointer-events: none;
-	left: 5px;
-	top: -10px;
+	left: 1%;
+	top: -20%;
 	transition: all 0.2s ease;
 }
 /* active */
 input:focus ~ label, input.used ~ label,
 textarea:focus ~ label, textarea.used ~ label{
   resize: none;
-	top: -30px;
-  transform: scale(.75); left: -2px;
+	top: -1%;
+  transform: scale(.75);
+  left: -2px;
 	/* font-size: 14px; */
 	color: #4a89dc;
 }
@@ -226,7 +304,7 @@ textarea:focus ~ .bar:before, textarea:focus ~ .bar:after
 	position: absolute;
 	height: 60%;
 	width: 100px;
-	top: 25%;
+	top: 35%;
 	left: 0;
 	pointer-events: none;
 	opacity: 0.5;
@@ -265,13 +343,13 @@ textarea:focus ~ .highlight{
   border-radius: 3px;
   text-transform: uppercase;
 }
-.buttonSend:focus  , .knowmore { outline: 0; }
+.buttonSend:focus  , .knowmore , .ourTeam { outline: 0; }
 /* Button modifiers */
-.buttonBlue , .knowmore{
+.buttonBlue , .knowmore , .ourTeam{
   background: #5D91CC;
   text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
 }
-.buttonBlue:hover , .knowmore:hover{ background: #38537f; }
+.buttonBlue:hover , .knowmore:hover , .ourTeam:hover{ background: #38537f; }
 /* Ripples container */
 .ripples {
   position: absolute;
@@ -310,8 +388,8 @@ textarea:focus ~ .highlight{
 /* END OF RIGHT PART */
 .knowmore{
   position: absolute;
-  top:0;
-  right:10px;
+  bottom:0;
+  left:40%;
   display: inline-block;
   padding: 12px 24px;
   margin: .3em 0 1em 0;
@@ -329,7 +407,30 @@ textarea:focus ~ .highlight{
   border-radius: 3px;
   text-transform: uppercase;
 }
+/*.ourTeam{
+  position: absolute;
+  bottom:0;
+  left:50%;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 1em 0;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  border: 0;
+  border-bottom: 2px solid #3160B6;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 3px;
+  text-transform: uppercase;
+}*/
+
 #info{
+  overflow: auto;
   text-align: left;
   margin: 15% 0;
   padding:6% 0;
@@ -368,3 +469,23 @@ textarea:focus ~ .highlight{
   cursor: pointer;
 }
 /* back to top button fin */
+section h3 {
+  font-size: 1.3em;
+  text-transform: uppercase;
+}
+.sctAbts{
+  border-width: 90%;
+  width: 30%;
+  margin:1.5% ;
+}
+.service{
+  font-size: 3em;
+  padding-bottom: 0.3em;
+  border-bottom: 4px solid #777;
+  margin-bottom: 3%;
+}
+.meetteam p{margin-left:3%;}
+.meetteam img{border: 1px solid red;width:200px; height:200px;background:black;}
+.meetteam figure{border: 1px solid red;}
+.rSoc{text-align: left;border: 1px solid red;}
+.meetteam figcaption {border: 1px solid red; text-align: center;}
