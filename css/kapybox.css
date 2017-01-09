@@ -323,7 +323,7 @@ textarea:focus ~ .highlight{
 .buttonSend  {
   position: absolute;
   bottom:0;
-  right:13px;
+  right:0;
   display: inline-block;
   padding: 12px 24px;
   margin: .3em 0 1em 0;
@@ -387,12 +387,10 @@ textarea:focus ~ .highlight{
 }
 /* END OF RIGHT PART */
 .knowmore{
-  position: fixed;
-  bottom:0;
-  left:45%;
+
   display: inline-block;
   padding: 12px 24px;
-  margin: .3em 0 1em 0;
+  margin: 0.3em 0 1em 0;
   color: #fff;
   font-size: 16px;
   line-height: 20px;
