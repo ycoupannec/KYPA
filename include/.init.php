@@ -1,9 +1,9 @@
 <?php
 /* Connexion à une base ODBC avec l'invocation de pilote */
-define('LOGIN','yohannc');
-define('MDP','RJ2q3Cq7QP');
+define('LOGIN','');
+define('MDP','');
 define('ADRESS','127.0.0.1');
-define('DB','yohannc');
+define('DB','');
 define('URL_SITE', "http://".$_SERVER['HTTP_HOST']."/KYPA/");
 
 
