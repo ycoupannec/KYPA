@@ -14,8 +14,11 @@
     <script src="scripts/scripts.js"></script>
     <script type="text/javascript" src="js/javaScript.js"></script>
 
+  <style>
+    h1, .kapyfooter{font-family: 'Breeze Personal Use';}
+    body{font-family: 'Champagne & Limousines';letter-spacing: 2px;font-weight: 200;}
+  </style>
 </head>
-
 
 <body style="background-image: url('img/bgd.jpg');background-size:auto 100%;background-repeat:no-repeat;">
   <header>
@@ -216,8 +219,7 @@
       <g id="Calque_2">
       </g>
       </svg>
-      <h1>KAPYBox
-      </h1>
+      <h1>Kapybox</h1>
     </a>
     </div>
     <h2 class="rowS">File Transfer Service</h2>
@@ -235,16 +237,14 @@
             <div id="parent" class="col-md-6 file-upload">
 
 
-                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
+                <button id="parent"  class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
                   <i class="fa fa-plus-circle" area-hidde="true"></i> Add Files
                 </button>
-            <!-- <div >
-               <p class="filename">name_of_your_file.jpg</p>
-            </div> -->
+
               <div class="image-upload-wrap">
                     <input class="file-upload-input" type='file' name="file" onchange="readURL(this);">
                     <div class="drag-text">
-                        <h3>Drag and drop a file</h3>
+                        <h3 class="drag-text">Drag and drop a file</h3>
                     </div>
                 </div>
 
@@ -252,26 +252,18 @@
                 <div class="liste-des-inputs"></div>
                 <input type="submit" value="Submit"> -->
 
+
+                  <div  class="col-md-10" id="hover-content">
+                    <p><i class="fa fa-info-circle fa fa-3x" aria-hidden="true"></i> You can upload up to 100KB per file of data !</p>
+                  </div>
                            <div class="file-upload-content">
                     <img class="file-upload-image" src="#" alt="your image" />
                     <div class="image-title-wrap">
                         <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                     </div>
                 </div>
-                <div id="hover-content">
-                    <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 600.28 400.89" enable-background="new 0 0 595.28 841.89" xml:space="preserve">
-          <g>
-            <g id="XMLID_1_">
-              <g>
-                <polygon fill="#7fa5e2" points="308.689,213.595 486.939,420.945 126.33,420.575 308.399,213.845      "/>
-              </g>
-              </g>
-            </g>
-                    </svg>
-                    <i class="fa fa-info-circle fa fa-3x" aria-hidden="true"></i>
-                    <p>You can upload up to 100KB per file of data !</p>
-                </div>
-            </div>
+
+              </div>
 
             <section class="formulaire col-md-6">
                 </div>
@@ -292,7 +284,7 @@
                   <label>Select your period of time</label>
                 </div>
               </section>
-                <button class="pull-right col-md-2 col-xs-12 buttonSend buttonBlue" type="submit"><i class="fa fa-send" area-hidden="true"></i> Send file
+                <button class="pull-right col-md-2 col-xs-6 buttonSend buttonBlue" type="submit"><i class="fa fa-send" area-hidden="true"></i> Send file
                 <div class="ripples buttonRipples">
                 <span class="ripplesCircle"></span>
                 </div>
@@ -335,15 +327,23 @@
 
                 });
             </script>
-</form>
-<a href="#aboutus">
-  <button type="button" class="col-xs-12 center-block knowmore buttonBlue">
-  <i class="fa fa-arrow-down" area-hidden="true"></i> Know More
-  </div>
-  </button>
-</a>
-</main>
 
+<article class="buttonlink">
+  <a href="#aboutus">
+    <button type="button" class=" col-xs-2 knowmore buttonBlue">
+    <i class="fa fa-arrow-down" area-hidden="true"></i> Know More
+    </div>
+    </button>
+  </a>
+  <a href="#ourteam">
+    <button type="button" class="col-xs-2 knowmore buttonBlue">
+    <i class="fa fa-arrow-down" area-hidden="true"></i> Our team
+    </div>
+    </button>
+  </a>
+</article>
+</form>
+</main>
 <main id="info">
 
   <section id="aboutus" class="container">
@@ -507,14 +507,14 @@
 
 
         </section>
-<section id="team" class="meetteam container">
+<section id="ourteam" class="meetteam container">
   <h4 class="service">Our Team</h4>
     <p>A group of people, talented, gifted, handsome, young were asked to create this site. We have every kind of different background, from everywhere around the globe. 4 peoples worked on this small project here are their face and link to their social.</p>
       <figcaption>
         <figure class="col-md-3">
           <h4>COUPANNEC Yohann</h4>
           <p>Programmer Back-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/yohannV.jpg" alt="">
           <p><a href="https://www.facebook.com/yohann.vernons?fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/yohann-coupannec-03a1b887?authType=NAME_SEARCH&authToken=6rIQ&locale=fr_FR&srchid=4708869611483974408839&srchindex=1&srchtotal=1&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A4708869611483974408839%2CVSRPtargetId%3A308047150%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/ycoupannec"><i class="fa fa-github-square fa-2x"></i></a>
           </p>
         </figure>
@@ -522,21 +522,21 @@
         <figure class="col-md-3">
           <h4>FALCO Aude</h4>
           <p>Programmer Back-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/audeF.jpg" alt="">
           <p><a href="https://www.facebook.com/profile.php?id=100013641930631&fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/aude-flc-65872a84?authType=NAME_SEARCH&authToken=WqTX&locale=fr_FR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A300399908%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1483974650429%2Ctas%3Aaude%20flc"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/Audinetta123"><i class="fa fa-github-square fa-2x"></i></a></p>
         </figure>
 
         <figure class="col-md-3">
           <h4>FRIQUET Pauline</h4>
           <p>Programmer Front-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/paulinef.jpg" alt="">
           <p><a href="https://www.facebook.com/pauline.sokowski?fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/pauline-friquet-041848111?authType=NAME_SEARCH&authToken=klxo&locale=fr_FR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A470886961%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1483974734481%2Ctas%3Apauline%20fri"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/paulinefrqt"><i class="fa fa-github-square fa-2x"></i></a></p>
 
         </figure>
         <figure class="col-md-3">
           <h4>NGUYEN Kevin</h4>
           <p>Programmer Front-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/kevinn.jpg" alt="">
           <p><a href="https://www.facebook.com/kevin.friberg.5074?fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/kevin-nguyen-000a1212b?authType=NAME_SEARCH&authToken=Npa1&locale=fr_FR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A537003648%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1483974823541%2Ctas%3Akevin%20"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/KevinN21"><i class="fa fa-github-square fa-2x"></i></a></p>
 
         </figure>
@@ -546,11 +546,8 @@
 </main>
 
       <footer class="footer">
-        <script src="https://use.fontawesome.com/c51cc08ec6.js"></script>
         <div class="blocFoot">
-          <div class="textFoot">
-          Kapybox
-          </div>
+          <h5 class="kapyfooter">Kapybox</h5>
         </div>
       </footer>
 </body>

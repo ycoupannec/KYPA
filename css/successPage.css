@@ -1,9 +1,29 @@
-*{font-family: "verdana";margin:0;padding:0;box-sizing: border-box;}
+
+
+@font-face {
+	font-family: 'Breeze Personal Use';
+	src: url('../font/BreezePersonalUse-Regular.eot');
+	src: local('../font/Breeze Personal Use Regular'), local('../font/BreezePersonalUse-Regular'),
+		url('../font/BreezePersonalUse-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../font/BreezePersonalUse-Regular.woff') format('woff'),
+		url('../font/BreezePersonalUse-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Champagne & Limousines';
+	src: url('Champagne&Limousines.eot');
+	src: local('Champagne & Limousines'), local('Champagne&Limousines'),
+		url('Champagne&Limousines.eot?#iefix') format('embedded-opentype'),
+		url('Champagne&Limousines.woff') format('woff'),
+		url('Champagne&Limousines.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+*{margin:0;padding:0;box-sizing: border-box;}
 body{overflow-x: hidden;}
 a, a:hover, a:active, a:visited, a:focus{text-decoration: none;}
-
-
-
 /* HEADER */
 
 /*header pour ttes les pages */
