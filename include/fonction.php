@@ -84,21 +84,21 @@ function creeDossier(){
 }
 
 function verifFile($fileUpload){	
-$maxFileSize = 1024 * 100; // 100 kB
-$tailleFile=filesize($fileUpload);
-if ($tailleFile>$maxFileSize) {
-	$erreur='file size is too big';
-	echo $erreur;
-	return false;
-}
-else {
-echo "filesize OK";
-return true;
-}
+	$maxFileSize = 1024 * 10000; // 10000 kB
+	$tailleFile=filesize($fileUpload);
+	if ($tailleFile>$maxFileSize) {
+		/*$erreur='file size is too big';
+		echo $erreur;*/
+		return false;
+	}
+	else {
+	/*echo "filesize OK";*/
+		return true;
+	}
 }
 
 function verifChamps($sender, $receiver, $fileUpload, $nbDay){
-	
+
 	if ((filter_var($sender, FILTER_VALIDATE_EMAIL)) && (filter_var($receiver, FILTER_VALIDATE_EMAIL)) && $fileUpload && ($nbDay > 0)){
 		echo ("Success"."\n\n");
 		return true;
@@ -108,7 +108,7 @@ function verifChamps($sender, $receiver, $fileUpload, $nbDay){
 	}
 }
 
-function envoieMail($sender, $receiver, $idDossier, $messageUser="messageUser"){
+function envoieMail($sender, $receiver, $idDossier, $messageUser,$template='./template/mail.html'){
 	
 	$m = new Mustache_Engine();
 	$tabDossier=infoDocBDD($idDossier);
@@ -124,7 +124,7 @@ function envoieMail($sender, $receiver, $idDossier, $messageUser="messageUser"){
 	$dir = URL_SITE.'index.php?action=telechargement&id='.crypteUrl($idDossier);
 	ini_set('display_error','on');
 	error_reporting (E_ALL);
-	$contenuMail=file_get_contents('./template/mail.html'); 
+	$contenuMail=file_get_contents($template); 
 	$dateCrea= new DateTime($tabDossier['dateUpload']);
 	$dateSuppr= new DateTime($tabDossier['dateUpload']);
 	$mess = $tabDossier['message'];
@@ -140,27 +140,28 @@ function envoieMail($sender, $receiver, $idDossier, $messageUser="messageUser"){
 
 	
 	
-	
     //Envoi de l'e-mail
 
 	
 
-	$message = $m->render($contenuMail,array('LIEN'=>$dir, 'MESSAGE'=>$messageUser, 'MAIL'=>$tabDossier['mailEmetteur'], 'DATECREA'=>$resDateCrea, 'DATESUPP'=>$resDateSuppr, 'LIENSITE'=>URL_SITE, 'MESSAGE'=> $mess, 'FICHIER'=>$tabContDoss,));
+	$message = $m->render($contenuMail,array('LIEN'=>$dir, 'MESSAGE'=>$messageUser, 'MAIL'=>$tabDossier['mailEmetteur'], 'DATECREA'=>$resDateCrea, 'DATESUPP'=>$resDateSuppr, 'LIENSITE'=>URL_SITE, 'MESSAGE'=> $mess, 'FICHIER'=>$tabContDoss,'IMGFOLDER'=>URL_SITE.'img/folder.png','IMGLOGO'=>URL_SITE.'img/KAPYBox1.png'));
 
-	if (mail($mail,$sujet,$message,$header)==false){
-		
-	}
+	
+	return mail($mail,$sujet,$message,$header);
 }
 
 function inserChamps($idDossier,$mailEmetteur,$mailRecepteur,$messageUser,$dateUpload,$nbDay){
 
-	echo $idDossier; echo $mailEmetteur; echo $mailRecepteur; echo $messageUser; echo $dateUpload; echo $nbDay;
 
 	if ($idDossier != ""){
 		$sql= new SQLpdo();
 		$idGen=$sql->insert("INSERT INTO `kypaLink` (idDossier, mailEmetteur, mailRecepteur, message, dateUpload, nbDay) VALUES (:idDossier, :mailEmetteur, :mailRecepteur, :message, :dateUpload, :nbDay);",
 			array(":idDossier" => $idDossier,':mailEmetteur'=> $mailEmetteur, ':mailRecepteur'=> $mailRecepteur, ':message' => $messageUser, ':dateUpload'=>$dateUpload, ':nbDay'=>$nbDay));
+		if ($idGen!=''){
+			return true;
+		}
 	}
+	return false;
 }
 function verif_alphaNum($str){
     preg_match("/([^A-Za-z0-9])/",$str,$result);

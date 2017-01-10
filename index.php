@@ -20,18 +20,25 @@
   ));
 
   if (isset($_GET['action']) && $_GET['action'] =="envoiMail" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])==39){
+    if(isset($_GET['messgeError'])&&$_GET['messgeError']!=""){
+      $messgeError=$_GET['messgeError'];
+      echo $m->render('pageError',array('MESSGERROR'=>$messgeError));
+    }else{
+       $infoBDD=infoDocBDD(decrypte($_GET['id']));
+        $tabM=array('LINK'=>URL_SITE.'index.php?action=telechargement&id='.$_GET['id'], 'NBDAYS'=>$infoBDD['nbDay']);
 
-    $infoBDD=infoDocBDD(decrypte($_GET['id']));
-    $tabM=array('LINK'=>URL_SITE.'index.php?action=telechargement&id='.$_GET['id'], 'NBDAYS'=>$infoBDD['nbDay']);
+        echo $m->render('pageReussite',$tabM);
 
-    echo $m->render('pageReussite',$tabM);
-
+    }
 
   }
   elseif (isset($_GET['action']) && $_GET['action'] =="telechargement" && isset($_GET['id']) && verif_alphaNum($_GET['id']) && strlen ( $_GET['id'])==39 && verifDocBDD(decrypte($_GET['id']))){
+    
     $idDecrypte=decrypte($_GET['id']);
     $infoBDD=infoDocBDD(decrypte($_GET['id']));
-    echo $m->render('page_download',array('FICHIER'=>affichContDossier($idDecrypte),'MAIL'=> $infoBDD['mailRecepteur']));
+    echo $m->render('page_download',array('FICHIER'=>affichContDossier($idDecrypte),'MAIL'=> $infoBDD['mailRecepteur']));  
+  
+    
   }
   else{
 
