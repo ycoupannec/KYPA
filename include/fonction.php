@@ -98,8 +98,8 @@ return true;
 }
 
 function verifChamps($sender, $receiver, $fileUpload, $nbDay){
-
-	if ((filter_var($sender, FILTER_VALIDATE_EMAIL)) && (filter_var($receiver, FILTER_VALIDATE_EMAIL)) && $fileUpload && $nbDay > 0){
+	
+	if ((filter_var($sender, FILTER_VALIDATE_EMAIL)) && (filter_var($receiver, FILTER_VALIDATE_EMAIL)) && $fileUpload && ($nbDay > 0)){
 		echo ("Success"."\n\n");
 		return true;
 	} else {

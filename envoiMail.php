@@ -28,7 +28,7 @@ $fileUpload=basename($_FILES['file']['name']);
 
 }*/
 
-if (verifChamps($sender, $receiver, $fileUpload)) {
+if (verifChamps($sender, $receiver, $fileUpload,$nbDay)) {
      
      if(isset($_FILES['file']))
      { 
