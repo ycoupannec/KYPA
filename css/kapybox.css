@@ -1,4 +1,3 @@
-
 @font-face {
 	font-family: 'Breeze Personal Use';
 	src: url('../font/BreezePersonalUse-Regular.eot');
@@ -19,8 +18,9 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 *{margin:0;padding:0;box-sizing: border-box;}
-body{}
+body{overflow-x: hidden;}
 a, a:hover, a:active, a:visited, a:focus{text-decoration: none;}
 figure h4 {font-weight: 900;}
 
