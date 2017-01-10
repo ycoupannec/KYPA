@@ -11,7 +11,16 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="scripts/scripts.js"></script>
       <script type="text/javascript" src="js/javaScript.js"></script>
-
+  <style>
+    h1, .kapyfooter{font-family: 'Breeze Personal Use';}
+    body{
+    background-image: url('img/bgd.jpg');
+    background-size:auto 100%;
+    background-repeat:no-repeat;
+    font-family: 'Champagne & Limousines';
+    letter-spacing: 2px;
+    font-weight: 200;}
+  </style>
 
 
   </head>
@@ -215,7 +224,7 @@
         </g>
         </svg>
         <h1>
-        KAPYBox
+        Kapybox
         </h1>
       </a>
 
@@ -232,22 +241,34 @@
           Congratulation! Your file has been sent! <br>
           You can download it right down below or in your mailbox.
         </p>
-        <p class="timeAvailable"> The file you've just sent will be available during {{NBDAYS}} days. 
+        <p class="timeAvailable"> The file you've just sent will be available during {{NBDAYS}} days. <br />
+                <br/>
+                <label for="">Link to download</label>
+
         </p>
 
       </article>
 
       <article class="download col-md-12">
-        <label for="">Link to download</label>
-        <input type="url" class="center-block form-control" id="linkDownload" placeholder=".//https:/..." value="{{LINK}}" readonly onfocus="this.select();" onclick="this.select();">
-        <button type="button" class="buttonBlue" onclick="selectElement('linkDownload');">Copy</button>
+        <button type="button" class="copy col-md-1" onclick="selectElement('linkDownload');"><i class="fa fa-copy" area-hidden="true"></i> Copy</button>
+        <input type="url" class="col-md-8 form-control" id="linkDownload" placeholder=".//https:/..." value="{{LINK}}" 
+        readonly onfocus="this.select();" onclick="this.select();">
+      </article>
 
-        <a href="#aboutus">
-          <button type="button" class="col-xs-12 center-block knowmore buttonBlue">
-        <i class="fa fa-arrow-down" area-hidden="true"></i> Know More
-        </div>
-        </button>
-        </a>
+ <article class="buttonlink">
+  <a href="#aboutus">
+    <button type="button" class=" col-xs-2 knowmore buttonBlue">
+    <i class="fa fa-arrow-down" area-hidden="true"></i> Know More
+    </div>
+    </button>
+  </a>
+  <a href="#ourteam">
+    <button type="button" class="col-xs-2 knowmore buttonBlue">
+    <i class="fa fa-arrow-down" area-hidden="true"></i> Our team
+    </div>
+    </button>
+  </a>
+</article>
     </section>
 
 
@@ -425,14 +446,14 @@
 
 
         </section>
-<section id="team" class="meetteam container">
+<section id="ourteam" class="meetteam container">
   <h4 class="service">Our Team</h4>
     <p>A group of people, talented, gifted, handsome, young were asked to create this site. We have every kind of different background, from everywhere around the globe. 4 peoples worked on this small project here are their face and link to their social.</p>
       <figcaption>
         <figure class="col-md-3">
           <h4>COUPANNEC Yohann</h4>
           <p>Programmer Back-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/yohannV.jpg" alt="">
           <p><a href="https://www.facebook.com/yohann.vernons?fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/yohann-coupannec-03a1b887?authType=NAME_SEARCH&authToken=6rIQ&locale=fr_FR&srchid=4708869611483974408839&srchindex=1&srchtotal=1&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A4708869611483974408839%2CVSRPtargetId%3A308047150%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/ycoupannec"><i class="fa fa-github-square fa-2x"></i></a>
           </p>
         </figure>
@@ -440,36 +461,33 @@
         <figure class="col-md-3">
           <h4>FALCO Aude</h4>
           <p>Programmer Back-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/audeF.jpg" alt="">
           <p><a href="https://www.facebook.com/profile.php?id=100013641930631&fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/aude-flc-65872a84?authType=NAME_SEARCH&authToken=WqTX&locale=fr_FR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A300399908%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1483974650429%2Ctas%3Aaude%20flc"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/Audinetta123"><i class="fa fa-github-square fa-2x"></i></a></p>
         </figure>
 
         <figure class="col-md-3">
           <h4>FRIQUET Pauline</h4>
           <p>Programmer Front-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/paulinef.jpg" alt="">
           <p><a href="https://www.facebook.com/pauline.sokowski?fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/pauline-friquet-041848111?authType=NAME_SEARCH&authToken=klxo&locale=fr_FR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A470886961%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1483974734481%2Ctas%3Apauline%20fri"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/paulinefrqt"><i class="fa fa-github-square fa-2x"></i></a></p>
 
         </figure>
         <figure class="col-md-3">
           <h4>NGUYEN Kevin</h4>
           <p>Programmer Front-End</p>
-          <img src="img/bgd.jpg" alt="">
+          <img src="img/kevinn.jpg" alt="">
           <p><a href="https://www.facebook.com/kevin.friberg.5074?fref=ts"><i class="fa fa-facebook-square fa-2x"></i></a> <a href="https://www.linkedin.com/in/kevin-nguyen-000a1212b?authType=NAME_SEARCH&authToken=Npa1&locale=fr_FR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A537003648%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1483974823541%2Ctas%3Akevin%20"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://github.com/KevinN21"><i class="fa fa-github-square fa-2x"></i></a></p>
 
         </figure>
       </article>
     </figcaption>
-  </section>
-</main>
-<footer class="footer">
-  <script src="https://use.fontawesome.com/c51cc08ec6.js"></script>
-  <div class="blocFoot">
-    <div class="textFoot">
-    Kapybox
-    </div>
-  </div>
-</footer>
+  </section></main>
+
+      <footer class="footer">
+        <div class="blocFoot">
+          <h5 class="kapyfooter">Kapybox</h5>
+        </div>
+      </footer>
 
   </body>
 </html>
